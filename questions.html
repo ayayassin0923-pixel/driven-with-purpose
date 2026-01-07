@@ -107,6 +107,24 @@
     function showResults() {
       window.location.href = "results.html";
     }
-  </script>
+  </script><script>
+  function showResults() {
+    const form = document.getElementById('questionsForm');
+    const answers = [];
+
+    for (let i = 0; i < form.elements.length; i++) {
+      if (form.elements[i].tagName === 'SELECT') {
+        answers.push(form.elements[i].value);
+      }
+    }
+
+    // Save answers as a string in browser storage
+    localStorage.setItem('userAnswers', JSON.stringify(answers));
+
+    // Go to results page
+    window.location.href = "results.html";
+  }
+</script>
+  
 </body>
 </html>
