@@ -1,130 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Your Interests & Strengths</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Business Finder - Questions</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Let’s understand you</h1>
-    <p>Answer honestly. There are no right or wrong answers.</p>
-
+    <h1>Tell us about you</h1>
     <form id="questionsForm">
+      <!-- 1 -->
+      <label for="age">How old are you?</label><br />
+      <input type="number" id="age" name="age" min="13" max="100" required /><br /><br />
 
-      <p>1. What excites you the most?</p>
-      <select required>
-        <option value="">Choose</option>
-        <option>Creating things</option>
-        <option>Helping people</option>
-        <option>Solving problems</option>
-        <option>Leading others</option>
-      </select><br><br>
+      <!-- 2 -->
+      <label for="interest">What are you most interested in?</label><br />
+      <input type="text" id="interest" name="interest" placeholder="Your interests..." /><br /><br />
 
-      <p>2. What are you naturally good at?</p>
-      <select required>
-        <option value="">Choose</option>
-        <option>Art & design</option>
-        <option>Communication</option>
-        <option>Numbers & logic</option>
-        <option>Organization</option>
-      </select><br><br>
+      <!-- 3 -->
+      <label for="skill">What skill do you think you are best at?</label><br />
+      <input type="text" id="skill" name="skill" placeholder="Your best skill..." /><br /><br />
 
-      <p>3. How much money can you start with?</p>
-      <select required>
-        <option value="">Choose</option>
-        <option>No money</option>
-        <option>Low budget</option>
-        <option>Medium budget</option>
-        <option>High budget</option>
-      </select><br><br>
+      <!-- 4 -->
+      <label for="budget">How much money can you invest in your business?</label><br />
+      <select id="budget" name="budget" required>
+        <option value="">--Select--</option>
+        <option value="No money">No money</option>
+        <option value="Low budget">Low budget (up to $500)</option>
+        <option value="Medium budget">Medium budget ($500 - $5000)</option>
+        <option value="High budget">High budget (over $5000)</option>
+      </select><br /><br />
 
-      <p>4. Do you prefer working alone or with others?</p>
-      <select required>
-        <option value="">Choose</option>
-        <option>Alone</option>
-        <option>With a team</option>
-        <option>Both</option>
-      </select><br><br>
+      <!-- 5 -->
+      <label for="time">How much time can you dedicate daily?</label><br />
+      <select id="time" name="time" required>
+        <option value="">--Select--</option>
+        <option value="Less than 1 hour">Less than 1 hour</option>
+        <option value="1-3 hours">1-3 hours</option>
+        <option value="3-5 hours">3-5 hours</option>
+        <option value="More than 5 hours">More than 5 hours</option>
+      </select><br /><br />
 
-      <p>5. What matters most to you?</p>
-      <select required>
-        <option value="">Choose</option>
-        <option>Freedom</option>
-        <option>Stability</option>
-        <option>Impact</option>
-        <option>Money</option>
-      </select><br><br>
+      <!-- 6 -->
+      <label for="workstyle">Do you prefer to work alone or with others?</label><br />
+      <select id="workstyle" name="workstyle" required>
+        <option value="">--Select--</option>
+        <option value="Alone">Alone</option>
+        <option value="With others">With others</option>
+        <option value="Either">Either</option>
+      </select><br /><br />
 
-      <p>6. How do you handle stress?</p>
-      <select required>
-        <option value="">Choose</option>
-        <option>Calm & focused</option>
-        <option>Emotional</option>
-        <option>Avoid it</option>
-        <option>Face it directly</option>
-      </select><br><br>
+      <!-- 7 -->
+      <label for="location">Do you want your business online, physical, or both?</label><br />
+      <select id="location" name="location" required>
+        <option value="">--Select--</option>
+        <option value="Online">Online</option>
+        <option value="Physical">Physical</option>
+        <option value="Both">Both</option>
+      </select><br /><br />
 
-      <p>7. Do you enjoy learning new skills?</p>
-      <select required>
-        <option value="">Choose</option>
-        <option>Yes, a lot</option>
-        <option>Sometimes</option>
-        <option>No</option>
-      </select><br><br>
+      <!-- 8 -->
+      <label for="passion">What motivates you the most?</label><br />
+      <input type="text" id="passion" name="passion" placeholder="Your motivation..." /><br /><br />
 
-      <p>8. Are you comfortable using social media?</p>
-      <select required>
-        <option value="">Choose</option>
-        <option>Very comfortable</option>
-        <option>Somewhat</option>
-        <option>Not at all</option>
-      </select><br><br>
+      <!-- 9 -->
+      <label for="challenge">What challenge do you want to solve with your business?</label><br />
+      <input type="text" id="challenge" name="challenge" placeholder="Describe a problem..." /><br /><br />
 
-      <p>9. How much time can you dedicate daily?</p>
-      <select required>
-        <option value="">Choose</option>
-        <option>1 hour</option>
-        <option>2–4 hours</option>
-        <option>Full time</option>
-      </select><br><br>
-
-      <p>10. What do you want your life to feel like?</p>
-      <select required>
-        <option value="">Choose</option>
-        <option>Peaceful</option>
-        <option>Exciting</option>
-        <option>Purposeful</option>
-        <option>Successful</option>
-      </select><br><br>
+      <!-- 10 -->
+      <label for="goal">What is your main goal for starting this business?</label><br />
+      <input type="text" id="goal" name="goal" placeholder="Your goal..." /><br /><br />
 
       <button type="button" onclick="showResults()">See my results</button>
-
     </form>
   </div>
 
   <script>
     function showResults() {
-      window.location.href = "results.html";
+      const form = document.getElementById('questionsForm');
+      const answers = [];
+
+      // Get all inputs/selects and save their values
+      answers.push(form.age.value);
+      answers.push(form.interest.value.trim());
+      answers.push(form.skill.value.trim());
+      answers.push(form.budget.value);
+      answers.push(form.time.value);
+      answers.push(form.workstyle.value);
+      answers.push(form.location.value);
+      answers.push(form.passion.value.trim());
+      answers.push(form.challenge.value.trim());
+      answers.push(form.goal.value.trim());
+
+      localStorage.setItem('userAnswers', JSON.stringify(answers));
+      window.location.href = 'results.html';
     }
-  </script><script>
-  function showResults() {
-    const form = document.getElementById('questionsForm');
-    const answers = [];
-
-    for (let i = 0; i < form.elements.length; i++) {
-      if (form.elements[i].tagName === 'SELECT') {
-        answers.push(form.elements[i].value);
-      }
-    }
-
-    // Save answers as a string in browser storage
-    localStorage.setItem('userAnswers', JSON.stringify(answers));
-
-    // Go to results page
-    window.location.href = "results.html";
-  }
-</script>
-  
+  </script>
 </body>
 </html>
+     
+       
