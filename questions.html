@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Interests & Strengths</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Let’s understand you</h1>
+    <p>Answer honestly. There are no right or wrong answers.</p>
+
+    <form id="questionsForm">
+
+      <p>1. What excites you the most?</p>
+      <select required>
+        <option value="">Choose</option>
+        <option>Creating things</option>
+        <option>Helping people</option>
+        <option>Solving problems</option>
+        <option>Leading others</option>
+      </select><br><br>
+
+      <p>2. What are you naturally good at?</p>
+      <select required>
+        <option value="">Choose</option>
+        <option>Art & design</option>
+        <option>Communication</option>
+        <option>Numbers & logic</option>
+        <option>Organization</option>
+      </select><br><br>
+
+      <p>3. How much money can you start with?</p>
+      <select required>
+        <option value="">Choose</option>
+        <option>No money</option>
+        <option>Low budget</option>
+        <option>Medium budget</option>
+        <option>High budget</option>
+      </select><br><br>
+
+      <p>4. Do you prefer working alone or with others?</p>
+      <select required>
+        <option value="">Choose</option>
+        <option>Alone</option>
+        <option>With a team</option>
+        <option>Both</option>
+      </select><br><br>
+
+      <p>5. What matters most to you?</p>
+      <select required>
+        <option value="">Choose</option>
+        <option>Freedom</option>
+        <option>Stability</option>
+        <option>Impact</option>
+        <option>Money</option>
+      </select><br><br>
+
+      <p>6. How do you handle stress?</p>
+      <select required>
+        <option value="">Choose</option>
+        <option>Calm & focused</option>
+        <option>Emotional</option>
+        <option>Avoid it</option>
+        <option>Face it directly</option>
+      </select><br><br>
+
+      <p>7. Do you enjoy learning new skills?</p>
+      <select required>
+        <option value="">Choose</option>
+        <option>Yes, a lot</option>
+        <option>Sometimes</option>
+        <option>No</option>
+      </select><br><br>
+
+      <p>8. Are you comfortable using social media?</p>
+      <select required>
+        <option value="">Choose</option>
+        <option>Very comfortable</option>
+        <option>Somewhat</option>
+        <option>Not at all</option>
+      </select><br><br>
+
+      <p>9. How much time can you dedicate daily?</p>
+      <select required>
+        <option value="">Choose</option>
+        <option>1 hour</option>
+        <option>2–4 hours</option>
+        <option>Full time</option>
+      </select><br><br>
+
+      <p>10. What do you want your life to feel like?</p>
+      <select required>
+        <option value="">Choose</option>
+        <option>Peaceful</option>
+        <option>Exciting</option>
+        <option>Purposeful</option>
+        <option>Successful</option>
+      </select><br><br>
+
+      <button type="button" onclick="showResults()">See my results</button>
+
+    </form>
+  </div>
+
+  <script>
+    function showResults() {
+      window.location.href = "results.html";
+    }
+  </script>
+</body>
+</html>
