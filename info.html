@@ -14,9 +14,9 @@
       <input type="text" placeholder="Your name" required><br><br>
       <input type="number" placeholder="Your age" required><br><br>
       <input type="email" placeholder="Your email" required><br><br>
-      <input type="text" placeholder="Your country" required><br><br>
-
-      <button type="button" onclick="goNext()">Next</button>
+      <label for="country">Country:</label>
+<input type="text" id="country" name="country" />
+      <button type="button" onclick="savePersonalInfo()">Next</button>
     </form>
   </div>
 
@@ -24,6 +24,14 @@
     function goNext() {
       window.location.href = "questions.html";
     }
-  </script>
+  </script><script>
+  function savePersonalInfo() {
+    const country = document.getElementById('country').value.trim();
+    localStorage.setItem('userCountry', country);
+    // Redirect to the next page (questions.html)
+    window.location.href = 'questions.html';
+  }
+</script>
+  
 </body>
 </html>
