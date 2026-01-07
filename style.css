@@ -1,0 +1,59 @@
+/* Pastel color palette */
+:root {
+  --soft-pink: #f9d5d3;
+  --soft-blue: #a8dadc;
+  --soft-green: #cce5cc;
+  --soft-yellow: #fff3b0;
+  --text-color: #333;
+  --button-color: #a8dadc;
+  --button-hover: #7ec8ca;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--soft-yellow);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  color: var(--soft-pink);
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+button#startBtn {
+  background-color: var(--button-color);
+  border: none;
+  padding: 0.75rem 2.5rem;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+}
+
+button#startBtn:hover {
+  background-color: var(--button-hover);
+}
