@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Possible Business Paths</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .business-path { display: none; text-align: left; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Your Possible Business Paths</h1>
+    <p>Based on your answers, these paths may suit you:</p>
+
+    <div id="engineering" class="business-path">
+      <h3>🛠 Engineering & Tech</h3>
+      <p>Building solutions, software, systems, or technical services.</p>
+    </div>
+
+    <div id="fashion" class="business-path">
+      <h3>👗 Fashion Brand</h3>
+      <p>Designing clothing, accessories, or building a personal fashion label.</p>
+    </div>
+
+    <div id="coffee" class="business-path">
+      <h3>☕ Coffee Shop</h3>
+      <p>Opening a small café, coffee stand, or specialty drink business.</p>
+    </div>
+
+    <div id="online" class="business-path">
+      <h3>📱 Online Business</h3>
+      <p>Content creation, digital products, social media brands, or freelancing.</p>
+    </div>
+
+    <div id="education" class="business-path">
+      <h3>📚 Education & Tutoring</h3>
+      <p>Teaching skills, tutoring students, or creating educational content.</p>
+    </div>
+
+    <div id="creative" class="business-path">
+      <h3>🎨 Creative Design</h3>
+      <p>Graphic design, art, branding, interior design, or creative services.</p>
+    </div>
+
+    <button onclick="goPlans()">Continue to Plans</button>
+  </div>
+
+  <script>
+    function goPlans() {
+      window.location.href = "plans.html";
+    }
+
+    window.onload = function () {
+      const answers = JSON.parse(localStorage.getItem("userAnswers"));
+
+      // Hide all paths by default
+      const paths = document.querySelectorAll(".business-path");
+      paths.forEach((path) => (path.style.display = "none"));
+
+      if (!answers) {
+        // No answers saved: show all paths
+        paths.forEach((path) => (path.style.display = "block"));
+        return;
+      }
+
+      // Simple logic based on answers array
+      // answers[0] = 1st question: What excites you?
+      // answers[2] = 3rd question: Budget
+
+      if (answers[0] === "Creating things") {
+        document.getElementById("fashion").style.display = "block";
+        document.getElementById("creative").style.display = "block";
+      }
+      if (answers[0] === "Helping people") {
+        document.getElementById("education").style.display = "block";
+      }
+      if (answers[2] === "Low budget" || answers[2] === "No money") {
+        document.getElementById("online").style.display = "block";
+      }
+      if (answers[2] === "High budget" || answers[2] === "Medium budget") {
+        document.getElementById("coffee").style.display = "block";
+        document.getElementById("engineering").style.display = "block";
+      }
+    };
+  </script>
+</body>
+</html>
