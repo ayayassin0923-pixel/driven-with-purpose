@@ -145,31 +145,40 @@
 
       // Show materials purchase places based on country
       const placesData = {
-        "USA": {
-          fashion: "Joann Fabrics, Mood Fabrics, Amazon",
-          engineering: "Best Buy, Micro Center, Amazon",
-          coffee: "Whole Foods, Local Coffee Suppliers, Amazon",
-          online: "Best Buy, Apple Store, Amazon",
-          education: "Office Depot, Amazon",
-          creative: "Adobe, Apple Store, Amazon"
-        },
-        "UK": {
-          fashion: "John Lewis, Fabric Land, Amazon UK",
-          engineering: "Maplin, Curry's PC World, Amazon UK",
-          coffee: "Whole Foods, Local Coffee Shops, Amazon UK",
-          online: "Currys, Apple Store, Amazon UK",
-          education: "WHSmith, Amazon UK",
-          creative: "Adobe, Apple Store, Amazon UK"
-        },
-        "default": {
-          fashion: "Local markets, Online stores like Amazon",
-          engineering: "Local electronics stores, Online marketplaces",
-          coffee: "Local suppliers, Supermarkets",
-          online: "Online shops, Electronics retailers",
-          education: "Stationery shops, Online retailers",
-          creative: "Online software providers, Local shops"
-        }
-      };
+      const placesData = {
+  "USA": {
+    fashion: "Joann Fabrics, Mood Fabrics, Amazon",
+    engineering: "Best Buy, Micro Center, Amazon",
+    coffee: "Whole Foods, Local Coffee Suppliers, Amazon",
+    online: "Best Buy, Apple Store, Amazon",
+    education: "Office Depot, Amazon",
+    creative: "Adobe, Apple Store, Amazon"
+  },
+  "UK": {
+    fashion: "John Lewis, Fabric Land, Amazon UK",
+    engineering: "Maplin, Curry's PC World, Amazon UK",
+    coffee: "Whole Foods, Local Coffee Shops, Amazon UK",
+    online: "Currys, Apple Store, Amazon UK",
+    education: "WHSmith, Amazon UK",
+    creative: "Adobe, Apple Store, Amazon UK"
+  },
+  "Lebanon": {
+    fashion: "Souk El Tayeb, Beirut Souks, Local Tailors",
+    engineering: "PC Shops in Hamra, Online Lebanese Marketplaces",
+    coffee: "Specialty Coffee Shops in Beirut, Local Roasters",
+    online: "Internet Cafes, Electronics Stores in Beirut",
+    education: "Local Bookstores, Online Education Platforms",
+    creative: "Art Supply Shops in Beirut, Online Stores"
+  },
+  "default": {
+    fashion: "Local markets, Ali Baba, AliExpress, Amazon",
+    engineering: "Local electronics stores, Ali Baba, AliExpress, Online marketplaces",
+    coffee: "Local suppliers, Supermarkets, Ali Baba, AliExpress",
+    online: "Online shops, Electronics retailers, Ali Baba, AliExpress",
+    education: "Stationery shops, Online retailers, Ali Baba, AliExpress",
+    creative: "Online software providers, Local shops, Ali Baba, AliExpress"
+  }
+};
 
       const countryPlaces = placesData[userCountry] || placesData["default"];
 
