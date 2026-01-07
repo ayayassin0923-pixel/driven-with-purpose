@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Your Business Matches</title>
+  <title>Your Business Matches & Materials</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
@@ -22,10 +22,10 @@
     h1 {
       text-align: center;
       margin-bottom: 30px;
-      color: #7f5af0; /* pastel purple */
+      color: #7f5af0;
     }
     h3 {
-      color: #f08a5d; /* pastel orange */
+      color: #f08a5d;
     }
     button {
       background-color: #7f5af0;
@@ -42,6 +42,12 @@
     button:hover {
       background-color: #5a3db9;
     }
+    .section-title {
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      color: #555;
+    }
   </style>
 </head>
 <body>
@@ -51,21 +57,24 @@
   <div id="fashion" class="business-path">
     <h3>👗 Fashion Brand</h3>
     <p><strong>What to do:</strong> Design and create your own clothing line or accessories. Focus on unique styles that fit your target audience.</p>
-    <p><strong>Materials needed:</strong> Fabrics, sewing machine, design software (like Adobe Illustrator), workspace.</p>
+    <p><strong>Materials needed:</strong> Fabrics, sewing machine, design software (Adobe Illustrator), workspace.</p>
+    <p><span class="section-title">Where to buy materials in your country:</span> <span id="fashion-places">Loading...</span></p>
     <p><strong>Tips:</strong> Use Instagram and TikTok to showcase your designs and connect with customers. Collaborate with influencers to boost your brand.</p>
   </div>
 
   <div id="engineering" class="business-path">
     <h3>🛠 Engineering & Tech</h3>
     <p><strong>What to do:</strong> Build software, apps, or hardware products. Solve technical problems or offer IT services.</p>
-    <p><strong>Materials needed:</strong> Computer, coding software, hardware components (if needed), workspace.</p>
-    <p><strong>Tips:</strong> Join online developer communities, use platforms like GitHub to showcase your projects, and market your skills on LinkedIn.</p>
+    <p><strong>Materials needed:</strong> Computer, coding software, hardware components, workspace.</p>
+    <p><span class="section-title">Where to buy materials in your country:</span> <span id="engineering-places">Loading...</span></p>
+    <p><strong>Tips:</strong> Join online developer communities, use GitHub to showcase your projects, and market your skills on LinkedIn.</p>
   </div>
 
   <div id="coffee" class="business-path">
     <h3>☕ Coffee Shop</h3>
     <p><strong>What to do:</strong> Open a café or specialty coffee stand. Focus on great customer experience and quality drinks.</p>
-    <p><strong>Materials needed:</strong> Coffee machines, grinders, beans, furniture, permits, and a good location.</p>
+    <p><strong>Materials needed:</strong> Coffee machines, grinders, quality beans, furniture, permits, good location.</p>
+    <p><span class="section-title">Where to buy materials in your country:</span> <span id="coffee-places">Loading...</span></p>
     <p><strong>Tips:</strong> Promote your shop on local social media groups, use loyalty programs, and offer seasonal specials.</p>
   </div>
 
@@ -73,13 +82,15 @@
     <h3>📱 Online Business</h3>
     <p><strong>What to do:</strong> Create content, digital products, freelancing services, or e-commerce stores.</p>
     <p><strong>Materials needed:</strong> Computer, camera/phone, design/editing software, website platform.</p>
+    <p><span class="section-title">Where to buy materials in your country:</span> <span id="online-places">Loading...</span></p>
     <p><strong>Tips:</strong> Build a strong online presence, engage with your audience regularly, and use SEO to attract visitors.</p>
   </div>
 
   <div id="education" class="business-path">
     <h3>📚 Education & Tutoring</h3>
     <p><strong>What to do:</strong> Teach skills or subjects, tutor students, or create educational content online.</p>
-    <p><strong>Materials needed:</strong> Teaching materials, reliable internet, video conferencing tools, website or platform to share lessons.</p>
+    <p><strong>Materials needed:</strong> Teaching materials, reliable internet, video conferencing tools, website or platform.</p>
+    <p><span class="section-title">Where to buy materials in your country:</span> <span id="education-places">Loading...</span></p>
     <p><strong>Tips:</strong> Offer free trial lessons, collect testimonials, and market your services in local communities or online.</p>
   </div>
 
@@ -87,6 +98,7 @@
     <h3>🎨 Creative Design</h3>
     <p><strong>What to do:</strong> Offer graphic design, branding, art commissions, or interior design services.</p>
     <p><strong>Materials needed:</strong> Design software (Photoshop, Illustrator), portfolio website, computer/tablet.</p>
+    <p><span class="section-title">Where to buy materials in your country:</span> <span id="creative-places">Loading...</span></p>
     <p><strong>Tips:</strong> Use Behance or Dribbble to showcase work, network with businesses, and build a strong social media presence.</p>
   </div>
 
@@ -99,71 +111,75 @@
 
     window.onload = function() {
       const answers = JSON.parse(localStorage.getItem("userAnswers"));
+      const userCountry = localStorage.getItem("userCountry") || "default";
       const paths = document.querySelectorAll(".business-path");
-      paths.forEach(path => path.style.display = "none"); // hide all initially
+      paths.forEach(path => path.style.display = "none");
 
       if (!answers) {
-        // No answers? Show all
         paths.forEach(path => path.style.display = "block");
         return;
       }
 
-      // answers array positions:
-      // 0: age
-      // 1: interest (text)
-      // 2: skill (text)
-      // 3: budget
-      // 4: time
-      // 5: workstyle
-      // 6: location
-      // 7: passion (text)
-      // 8: challenge (text)
-      // 9: goal (text)
-
-      // Simple keyword matching for open-ended answers (interest, skill, passion, challenge, goal)
+      // Show paths based on answers (similar logic to before)
       const textAnswers = [answers[1], answers[2], answers[7], answers[8], answers[9]].join(" ").toLowerCase();
 
-      // Show Fashion if "fashion", "design", or "clothing" in answers
       if (textAnswers.includes("fashion") || textAnswers.includes("design") || textAnswers.includes("clothing")) {
         document.getElementById("fashion").style.display = "block";
       }
-
-      // Show Engineering if skill includes "tech", "coding", "engineer", "software", "program"
       if (textAnswers.match(/tech|coding|engineer|software|program/)) {
         document.getElementById("engineering").style.display = "block";
       }
-
-      // Show Coffee shop if budget is medium/high and interest includes "coffee", "cafe", "food"
       if ((answers[3] === "Medium budget" || answers[3] === "High budget") &&
           (textAnswers.includes("coffee") || textAnswers.includes("cafe") || textAnswers.includes("food"))) {
         document.getElementById("coffee").style.display = "block";
       }
-
-      // Show Online business if location includes "online" or passion includes "digital", "online"
       if (answers[6] === "Online" || answers[6] === "Both" || textAnswers.includes("digital") || textAnswers.includes("online")) {
         document.getElementById("online").style.display = "block";
       }
-
-      // Show Education if interest or passion includes "teach", "education", "tutor"
       if (textAnswers.includes("teach") || textAnswers.includes("education") || textAnswers.includes("tutor")) {
         document.getElementById("education").style.display = "block";
       }
-
-      // Show Creative if skill or interest includes "art", "creative", "graphic"
       if (textAnswers.includes("art") || textAnswers.includes("creative") || textAnswers.includes("graphic")) {
         document.getElementById("creative").style.display = "block";
       }
 
-      // Fallback: if none matched, show all
-      const visiblePaths = Array.from(paths).filter(p => p.style.display === "block");
-      if (visiblePaths.length === 0) {
-        paths.forEach(path => path.style.display = "block");
-      }
+      // Show materials purchase places based on country
+      const placesData = {
+        "USA": {
+          fashion: "Joann Fabrics, Mood Fabrics, Amazon",
+          engineering: "Best Buy, Micro Center, Amazon",
+          coffee: "Whole Foods, Local Coffee Suppliers, Amazon",
+          online: "Best Buy, Apple Store, Amazon",
+          education: "Office Depot, Amazon",
+          creative: "Adobe, Apple Store, Amazon"
+        },
+        "UK": {
+          fashion: "John Lewis, Fabric Land, Amazon UK",
+          engineering: "Maplin, Curry's PC World, Amazon UK",
+          coffee: "Whole Foods, Local Coffee Shops, Amazon UK",
+          online: "Currys, Apple Store, Amazon UK",
+          education: "WHSmith, Amazon UK",
+          creative: "Adobe, Apple Store, Amazon UK"
+        },
+        "default": {
+          fashion: "Local markets, Online stores like Amazon",
+          engineering: "Local electronics stores, Online marketplaces",
+          coffee: "Local suppliers, Supermarkets",
+          online: "Online shops, Electronics retailers",
+          education: "Stationery shops, Online retailers",
+          creative: "Online software providers, Local shops"
+        }
+      };
+
+      const countryPlaces = placesData[userCountry] || placesData["default"];
+
+      document.getElementById("fashion-places").textContent = countryPlaces.fashion;
+      document.getElementById("engineering-places").textContent = countryPlaces.engineering;
+      document.getElementById("coffee-places").textContent = countryPlaces.coffee;
+      document.getElementById("online-places").textContent = countryPlaces.online;
+      document.getElementById("education-places").textContent = countryPlaces.education;
+      document.getElementById("creative-places").textContent = countryPlaces.creative;
     };
   </script>
 </body>
 </html>
-
-   
-      
-    
