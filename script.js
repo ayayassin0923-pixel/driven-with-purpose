@@ -5,3 +5,6 @@ document.getElementById('startBtn').addEventListener('click', () => {
   
   // In the future: window.location.href = 'page2.html';
 });
+document.getElementById('startBtn').addEventListener('click', () => {
+  window.location.href = 'info.html';
+});
