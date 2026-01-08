@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Where to Buy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Where You Can Buy Everything 🛍️</h1>
+
+  <div id="placesCard"></div>
+
+  <button onclick="restart()">Start Over ↺</button>
+
+  <!-- Load shared data -->
+  <script src="script.js"></script>
+
+  <script>
+    const chosenKey = localStorage.getItem("chosenPath");
+    const country = localStorage.getItem("userCountry") || "default";
+
+    if (!chosenKey || !businesses[chosenKey]) {
+      document.getElementById("placesCard").innerHTML =
+        "<p>Something went wrong. Please restart.</p>";
+    } else {
+      const chosenBusiness = businesses[chosenKey];
+      const places = getPlaces(country);
+
+      let placesList = "";
+      places.forEach(place => {
+        placesList += `<li>${place}</li>`;
+      });
+
+      document.getElementById("placesCard").innerHTML = `
+        <div style="
+          padding: 20px;
+          border-radius: 16px;
+          background: #f0fff7;
+          max-width: 500px;
+          margin: auto;
+        ">
+          <h2>${chosenBusiness.emoji} ${chosenBusiness.title}</h2>
+          <p><strong>Country:</strong> ${country}</p>
+          <ul>${placesList}</ul>
+        </div>
+      `;
+    }
+
+    function restart() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
