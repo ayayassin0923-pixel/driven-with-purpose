@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Materials Needed</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>What You’ll Need 🧰</h1>
+
+  <div id="materialsCard"></div>
+
+  <button onclick="goToPlaces()">Where to buy →</button>
+
+  <!-- Load shared data -->
+  <script src="script.js"></script>
+
+  <script>
+    // Get chosen business from results page
+    const chosenKey = localStorage.getItem("chosenPath");
+
+    if (!chosenKey || !businesses[chosenKey]) {
+      document.getElementById("materialsCard").innerHTML =
+        "<p>Something went wrong. Please restart.</p>";
+    } else {
+      const chosenBusiness = businesses[chosenKey];
+
+      let listItems = "";
+      chosenBusiness.materials.forEach(item => {
+        listItems += `<li>${item}</li>`;
+      });
+
+      document.getElementById("materialsCard").innerHTML = `
+        <div style="
+          padding: 20px;
+          border-radius: 16px;
+          background: #fff7f0;
+          max-width: 500px;
+          margin: auto;
+        ">
+          <h2>${chosenBusiness.emoji} ${chosenBusiness.title}</h2>
+          <ul>${listItems}</ul>
+        </div>
+      `;
+    }
+
+    function goToPlaces() {
+      window.location.href = "places.html";
+    }
+  </script>
+
+</body>
+</html>
