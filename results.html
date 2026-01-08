@@ -1,46 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Your Result</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+<script>
+  const userAnswers = JSON.parse(localStorage.getItem('userAnswers') || '{}');
 
-  <h1>Your Best Business Path ✨</h1>
+  let chosenKey = "online_store"; // default
 
-  <div id="resultCard"></div>
+  if (userAnswers.interest && userAnswers.interest.includes('fashion') || (userAnswers.skill && userAnswers.skill.includes('sew'))) {
+    if (userAnswers.budget === 'No money' || userAnswers.budget === 'Low budget') {
+      chosenKey = "online_store"; // start small online fashion
+    } else {
+      chosenKey = "fashion_brand";
+    }
+  } else if (userAnswers.interest && userAnswers.interest.includes('coffee') || (userAnswers.goal && userAnswers.goal.includes('cafe'))) {
+    chosenKey = "coffee_shop";
+  } else if (userAnswers.interest && userAnswers.interest.includes('marketing') || (userAnswers.skill && userAnswers.skill.includes('social media'))) {
+    chosenKey = "digital_marketing";
+  } else if (userAnswers.interest && userAnswers.interest.includes('design') || (userAnswers.skill && userAnswers.skill.includes('draw'))) {
+    chosenKey = "graphic_design";
+  } else if (userAnswers.interest && userAnswers.interest.includes('video') || (userAnswers.skill && userAnswers.skill.includes('video'))) {
+    chosenKey = "content_creator";
+  }
 
-  <!-- Use normal link instead of JS onclick -->
-  <a href="materials.html"><button>See what you need →</button></a>
+  localStorage.setItem("chosenPath", chosenKey);
 
-  <!-- Load script.js BEFORE inline JS -->
-  <script src="script.js"></script>
+  const chosen = businesses[chosenKey];
 
-  <script>
-    // Pick a random business from script.js data
-    const businessKeys = Object.keys(businesses);
-    const randomChoice = businessKeys[Math.floor(Math.random() * businessKeys.length)];
-    const chosen = businesses[randomChoice];
-
-    // Save chosen business key for later pages
-    localStorage.setItem("chosenPath", randomChoice);
-
-    // Show result card
-    document.getElementById("resultCard").innerHTML = `
-      <div style="
-        padding: 20px;
-        border-radius: 16px;
-        background: #f6f6ff;
-        max-width: 400px;
-        margin: auto;
-      ">
-        <h2 style="font-size: 40px">${chosen.emoji}</h2>
-        <h3>${chosen.title}</h3>
-        <p>This path matches your energy, interests, and creativity.</p>
-      </div>
-    `;
-  </script>
-
-</body>
-</html>
+  document.getElementById("resultCard").innerHTML = `
+    <div style="
+      padding: 20px;
+      border-radius: 16px;
+      background: #f6f6ff;
+      max-width: 400px;
+      margin: auto;
+    ">
+      <h2 style="font-size: 40px">${chosen.emoji}</h2>
+      <h3>${chosen.title}</h3>
+      <p>This path matches your energy, interests, and creativity.</p>
+    </div>
+  `;
+</script>
