@@ -2,50 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Welcome to Business Finder</title>
+  <title>Your Information</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Quick minimal styles for center alignment */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fef6f9;
-      color: #6c5b7b;
-      display: flex;
-      height: 100vh;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-    }
-    .container {
-      text-align: center;
-      max-width: 400px;
-      padding: 20px;
-      background: #fff0f6;
-      border-radius: 20px;
-      box-shadow: 0 8px 16px rgba(246, 114, 128, 0.3);
-    }
-    button {
-      background-color: #f67280;
-      border: none;
-      border-radius: 12px;
-      color: white;
-      padding: 15px 30px;
-      font-size: 18px;
-      cursor: pointer;
-      margin-top: 20px;
-      box-shadow: 0 4px 6px rgba(246,114,128,0.3);
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #c94f56;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to Business Finder</h1>
-    <p>Discover the perfect business for you based on your interests, skills, and budget.</p>
-    <a href="personal_info.html"><button>Start</button></a>
+  <div class="container" style="max-width: 400px; margin: auto; padding: 20px;">
+    <h1>Tell us about you</h1>
+    <p>This helps us personalize your journey.</p>
+
+    <form id="personalInfoForm">
+      <input type="text" id="name" placeholder="Your name" required /><br /><br />
+      <input type="number" id="age" placeholder="Your age" min="13" max="100" required /><br /><br />
+      <input type="email" id="email" placeholder="Your email" required /><br /><br />
+      <label for="country">Country:</label><br />
+      <input type="text" id="country" name="country" required /><br /><br />
+      <button type="button" onclick="savePersonalInfo()">Next</button>
+    </form>
   </div>
+
+  <script>
+    function savePersonalInfo() {
+      const form = document.getElementById('personalInfoForm');
+      const personalInfo = {
+        name: form.name.value.trim(),
+        age: form.age.value,
+        email: form.email.value.trim(),
+        country: form.country.value.trim()
+      };
+      localStorage.setItem('personalInfo', JSON.stringify(personalInfo));
+      window.location.href = 'questions.html';
+    }
+  </script>
 </body>
 </html>
