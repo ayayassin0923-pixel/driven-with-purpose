@@ -1,193 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Your Business Matches & Materials</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 700px;
-      margin: auto;
-    }
-    .business-path {
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 15px;
-      margin-bottom: 20px;
-      background: #f9f9f9;
-      display: none;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #7f5af0;
-    }
-    h3 {
-      color: #f08a5d;
-    }
-    button {
-      background-color: #7f5af0;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-      display: block;
-      margin: 30px auto 0;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #5a3db9;
-    }
-    .section-title {
-      font-weight: bold;
-      margin-top: 10px;
-      margin-bottom: 5px;
-      color: #555;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Your Result</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Your Best Business Matches</h1>
-  <p>Based on your answers, here are some business ideas tailored for you:</p>
 
-  <div id="fashion" class="business-path">
-    <h3>👗 Fashion Brand</h3>
-    <p><strong>What to do:</strong> Design and create your own clothing line or accessories. Focus on unique styles that fit your target audience.</p>
-    <p><strong>Materials needed:</strong> Fabrics, sewing machine, design software (Adobe Illustrator), workspace.</p>
-    <p><span class="section-title">Where to buy materials in your country:</span> <span id="fashion-places">Loading...</span></p>
-    <p><strong>Tips:</strong> Use Instagram and TikTok to showcase your designs and connect with customers. Collaborate with influencers to boost your brand.</p>
-  </div>
+  <h1>Your Best Business Path ✨</h1>
 
-  <div id="engineering" class="business-path">
-    <h3>🛠 Engineering & Tech</h3>
-    <p><strong>What to do:</strong> Build software, apps, or hardware products. Solve technical problems or offer IT services.</p>
-    <p><strong>Materials needed:</strong> Computer, coding software, hardware components, workspace.</p>
-    <p><span class="section-title">Where to buy materials in your country:</span> <span id="engineering-places">Loading...</span></p>
-    <p><strong>Tips:</strong> Join online developer communities, use GitHub to showcase your projects, and market your skills on LinkedIn.</p>
-  </div>
+  <div id="resultCard"></div>
 
-  <div id="coffee" class="business-path">
-    <h3>☕ Coffee Shop</h3>
-    <p><strong>What to do:</strong> Open a café or specialty coffee stand. Focus on great customer experience and quality drinks.</p>
-    <p><strong>Materials needed:</strong> Coffee machines, grinders, quality beans, furniture, permits, good location.</p>
-    <p><span class="section-title">Where to buy materials in your country:</span> <span id="coffee-places">Loading...</span></p>
-    <p><strong>Tips:</strong> Promote your shop on local social media groups, use loyalty programs, and offer seasonal specials.</p>
-  </div>
+  <button onclick="goToMaterials()">See what you need →</button>
 
-  <div id="online" class="business-path">
-    <h3>📱 Online Business</h3>
-    <p><strong>What to do:</strong> Create content, digital products, freelancing services, or e-commerce stores.</p>
-    <p><strong>Materials needed:</strong> Computer, camera/phone, design/editing software, website platform.</p>
-    <p><span class="section-title">Where to buy materials in your country:</span> <span id="online-places">Loading...</span></p>
-    <p><strong>Tips:</strong> Build a strong online presence, engage with your audience regularly, and use SEO to attract visitors.</p>
-  </div>
-
-  <div id="education" class="business-path">
-    <h3>📚 Education & Tutoring</h3>
-    <p><strong>What to do:</strong> Teach skills or subjects, tutor students, or create educational content online.</p>
-    <p><strong>Materials needed:</strong> Teaching materials, reliable internet, video conferencing tools, website or platform.</p>
-    <p><span class="section-title">Where to buy materials in your country:</span> <span id="education-places">Loading...</span></p>
-    <p><strong>Tips:</strong> Offer free trial lessons, collect testimonials, and market your services in local communities or online.</p>
-  </div>
-
-  <div id="creative" class="business-path">
-    <h3>🎨 Creative Design</h3>
-    <p><strong>What to do:</strong> Offer graphic design, branding, art commissions, or interior design services.</p>
-    <p><strong>Materials needed:</strong> Design software (Photoshop, Illustrator), portfolio website, computer/tablet.</p>
-    <p><span class="section-title">Where to buy materials in your country:</span> <span id="creative-places">Loading...</span></p>
-    <p><strong>Tips:</strong> Use Behance or Dribbble to showcase work, network with businesses, and build a strong social media presence.</p>
-  </div>
-
-  <button onclick="goToPlans()">See Plans & Pricing</button>
+  <!-- Connect main data -->
+  <script src="script.js"></script>
 
   <script>
-    function goToPlans() {
-      window.location.href = "plans.html";
+    /*
+      TEMP LOGIC:
+      Later this will depend on answers.
+      For now, it randomly picks one business.
+    */
+
+    const businessKeys = Object.keys(businesses);
+    const randomChoice =
+      businessKeys[Math.floor(Math.random() * businessKeys.length)];
+
+    const chosen = businesses[randomChoice];
+
+    // Save choice for next pages
+    localStorage.setItem("chosenPath", randomChoice);
+
+    document.getElementById("resultCard").innerHTML = `
+      <div style="
+        padding: 20px;
+        border-radius: 16px;
+        background: #f6f6ff;
+        max-width: 400px;
+        margin: auto;
+      ">
+        <h2 style="font-size: 40px">${chosen.emoji}</h2>
+        <h3>${chosen.title}</h3>
+        <p>
+          This path matches your energy, interests,
+          and the way you think about creating value.
+        </p>
+      </div>
+    `;
+
+    function goToMaterials() {
+      window.location.href = "materials.html";
     }
-
-    window.onload = function() {
-      const answers = JSON.parse(localStorage.getItem("userAnswers"));
-      const userCountry = localStorage.getItem("userCountry") || "default";
-      const paths = document.querySelectorAll(".business-path");
-      paths.forEach(path => path.style.display = "none");
-
-      if (!answers) {
-        paths.forEach(path => path.style.display = "block");
-        return;
-      }
-
-      // Show paths based on answers (similar logic to before)
-      const textAnswers = [answers[1], answers[2], answers[7], answers[8], answers[9]].join(" ").toLowerCase();
-
-      if (textAnswers.includes("fashion") || textAnswers.includes("design") || textAnswers.includes("clothing")) {
-        document.getElementById("fashion").style.display = "block";
-      }
-      if (textAnswers.match(/tech|coding|engineer|software|program/)) {
-        document.getElementById("engineering").style.display = "block";
-      }
-      if ((answers[3] === "Medium budget" || answers[3] === "High budget") &&
-          (textAnswers.includes("coffee") || textAnswers.includes("cafe") || textAnswers.includes("food"))) {
-        document.getElementById("coffee").style.display = "block";
-      }
-      if (answers[6] === "Online" || answers[6] === "Both" || textAnswers.includes("digital") || textAnswers.includes("online")) {
-        document.getElementById("online").style.display = "block";
-      }
-      if (textAnswers.includes("teach") || textAnswers.includes("education") || textAnswers.includes("tutor")) {
-        document.getElementById("education").style.display = "block";
-      }
-      if (textAnswers.includes("art") || textAnswers.includes("creative") || textAnswers.includes("graphic")) {
-        document.getElementById("creative").style.display = "block";
-      }
-
-      // Show materials purchase places based on country
-      const placesData = {
-        "USA": {
-          fashion: "Joann Fabrics, Mood Fabrics, Amazon",
-          engineering: "Best Buy, Micro Center, Amazon",
-          coffee: "Whole Foods, Local Coffee Suppliers, Amazon",
-          online: "Best Buy, Apple Store, Amazon",
-          education: "Office Depot, Amazon",
-          creative: "Adobe, Apple Store, Amazon"
-        },
-        "UK": {
-          fashion: "John Lewis, Fabric Land, Amazon UK",
-          engineering: "Maplin, Curry's PC World, Amazon UK",
-          coffee: "Whole Foods, Local Coffee Shops, Amazon UK",
-          online: "Currys, Apple Store, Amazon UK",
-          education: "WHSmith, Amazon UK",
-          creative: "Adobe, Apple Store, Amazon UK"
-        },
-        "Lebanon": {
-          fashion: "Souk El Tayeb, Beirut Souks, Local Tailors",
-          engineering: "PC Shops in Hamra, Online Lebanese Marketplaces",
-          coffee: "Specialty Coffee Shops in Beirut, Local Roasters",
-          online: "Internet Cafes, Electronics Stores in Beirut",
-          education: "Local Bookstores, Online Education Platforms",
-          creative: "Art Supply Shops in Beirut, Online Stores"
-        },
-        "default": {
-          fashion: "Local markets, Ali Baba, AliExpress, Amazon",
-          engineering: "Local electronics stores, Ali Baba, AliExpress, Online marketplaces",
-          coffee: "Local suppliers, Supermarkets, Ali Baba, AliExpress",
-          online: "Online shops, Electronics retailers, Ali Baba, AliExpress",
-          education: "Stationery shops, Online retailers, Ali Baba, AliExpress",
-          creative: "Online software providers, Local shops, Ali Baba, AliExpress"
-        }
-      };
-
-      const countryPlaces = placesData[userCountry] || placesData["default"];
-
-      document.getElementById("fashion-places").textContent = countryPlaces.fashion;
-      document.getElementById("engineering-places").textContent = countryPlaces.engineering;
-      document.getElementById("coffee-places").textContent = countryPlaces.coffee;
-      document.getElementById("online-places").textContent = countryPlaces.online;
-      document.getElementById("education-places").textContent = countryPlaces.education;
-      document.getElementById("creative-places").textContent = countryPlaces.creative;
-    };
   </script>
+
 </body>
 </html>
+
