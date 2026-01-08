@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Your Result</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -11,27 +11,22 @@
 
   <div id="resultCard"></div>
 
-  <button onclick="goToMaterials()">See what you need →</button>
+  <!-- Use normal link instead of JS onclick -->
+  <a href="materials.html"><button>See what you need →</button></a>
 
-  <!-- Connect main data -->
+  <!-- Load script.js BEFORE inline JS -->
   <script src="script.js"></script>
 
   <script>
-    /*
-      TEMP LOGIC:
-      Later this will depend on answers.
-      For now, it randomly picks one business.
-    */
-
+    // Pick a random business from script.js data
     const businessKeys = Object.keys(businesses);
-    const randomChoice =
-      businessKeys[Math.floor(Math.random() * businessKeys.length)];
-
+    const randomChoice = businessKeys[Math.floor(Math.random() * businessKeys.length)];
     const chosen = businesses[randomChoice];
 
-    // Save choice for next pages
+    // Save chosen business key for later pages
     localStorage.setItem("chosenPath", randomChoice);
 
+    // Show result card
     document.getElementById("resultCard").innerHTML = `
       <div style="
         padding: 20px;
@@ -42,18 +37,10 @@
       ">
         <h2 style="font-size: 40px">${chosen.emoji}</h2>
         <h3>${chosen.title}</h3>
-        <p>
-          This path matches your energy, interests,
-          and the way you think about creating value.
-        </p>
+        <p>This path matches your energy, interests, and creativity.</p>
       </div>
     `;
-
-    function goToMaterials() {
-      window.location.href = "materials.html";
-    }
   </script>
 
 </body>
 </html>
-
