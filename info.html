@@ -2,35 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Your Information</title>
+  <title>Business Finder - Questions</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container" style="max-width: 400px; margin: auto; padding: 20px;">
+  <div class="container" style="max-width: 500px; margin: auto; padding: 20px;">
     <h1>Tell us about you</h1>
-    <p>This helps us personalize your journey.</p>
+    <form id="questionsForm">
+      <label for="age">How old are you?</label><br />
+      <input type="number" id="age" name="age" min="13" max="100" required /><br /><br />
 
-    <form id="personalInfoForm">
-      <input type="text" id="name" placeholder="Your name" required /><br /><br />
-      <input type="number" id="age" placeholder="Your age" min="13" max="100" required /><br /><br />
-      <input type="email" id="email" placeholder="Your email" required /><br /><br />
-      <label for="country">Country:</label><br />
-      <input type="text" id="country" name="country" required /><br /><br />
-      <button type="button" onclick="savePersonalInfo()">Next</button>
+      <label for="interest">What are you most interested in?</label><br />
+      <input type="text" id="interest" name="interest" placeholder="Your interests..." /><br /><br />
+
+      <label for="skill">What skill do you think you are best at?</label><br />
+      <input type="text" id="skill" name="skill" placeholder="Your best skill..." /><br /><br />
+
+      <label for="budget">How much money can you invest in your business?</label><br />
+      <select id="budget" name="budget" required>
+        <option value="">--Select--</option>
+        <option value="No money">No money</option>
+        <option value="Low budget">Low budget (up to $500)</option>
+        <option value="Medium budget">Medium budget ($500 - $5000)</option>
+        <option value="High budget">High budget (over $5000)</option>
+      </select><br /><br />
+
+      <label for="time">How much time can you dedicate daily?</label><br />
+      <select id="time" name="time" required>
+        <option value="">--Select--</option>
+        <option value="Less than 1 hour">Less than 1 hour</option>
+        <option value="1-3 hours">1-3 hours</option>
+        <option value="3-5 hours">3-5 hours</option>
+        <option value="More than 5 hours">More than 5 hours</option>
+      </select><br /><br />
+
+      <label for="workstyle">Do you prefer to work alone or with others?</label><br />
+      <select id="workstyle" name="workstyle" required>
+        <option value="">--Select--</option>
+        <option value="Alone">Alone</option>
+        <option value="With others">With others</option>
+        <option value="Either">Either</option>
+      </select><br /><br />
+
+      <label for="location">Do you want your business online, physical, or both?</label><br />
+      <select id="location" name="location" required>
+        <option value="">--Select--</option>
+        <option value="Online">Online</option>
+        <option value="Physical">Physical</option>
+        <option value="Both">Both</option>
+      </select><br /><br />
+
+      <label for="passion">What motivates you the most?</label><br />
+      <input type="text" id="passion" name="passion" placeholder="Your motivation..." /><br /><br />
+
+      <label for="challenge">What challenge do you want to solve with your business?</label><br />
+      <input type="text" id="challenge" name="challenge" placeholder="Describe a problem..." /><br /><br />
+
+      <label for="goal">What is your main goal for starting this business?</label><br />
+      <input type="text" id="goal" name="goal" placeholder="Your goal..." /><br /><br />
+
+      <button type="button" onclick="saveAnswers()">See my results</button>
     </form>
   </div>
 
   <script>
-    function savePersonalInfo() {
-      const form = document.getElementById('personalInfoForm');
-      const personalInfo = {
-        name: form.name.value.trim(),
+    function saveAnswers() {
+      const form = document.getElementById('questionsForm');
+
+      const answers = {
         age: form.age.value,
-        email: form.email.value.trim(),
-        country: form.country.value.trim()
+        interest: form.interest.value.trim().toLowerCase(),
+        skill: form.skill.value.trim().toLowerCase(),
+        budget: form.budget.value,
+        time: form.time.value,
+        workstyle: form.workstyle.value,
+        location: form.location.value,
+        passion: form.passion.value.trim().toLowerCase(),
+        challenge: form.challenge.value.trim().toLowerCase(),
+        goal: form.goal.value.trim().toLowerCase()
       };
-      localStorage.setItem('personalInfo', JSON.stringify(personalInfo));
-      window.location.href = 'questions.html';
+
+      localStorage.setItem('userAnswers', JSON.stringify(answers));
+      window.location.href = 'results.html';
     }
   </script>
 </body>
