@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Materials Needed</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -11,21 +11,19 @@
 
   <div id="materialsCard"></div>
 
-  <button onclick="goToPlaces()">Where to buy →</button>
+  <!-- Normal link to next page -->
+  <a href="places.html"><button>Where to buy →</button></a>
 
-  <!-- Load shared data -->
+  <!-- Load script.js first -->
   <script src="script.js"></script>
 
   <script>
-    // Get chosen business from results page
     const chosenKey = localStorage.getItem("chosenPath");
 
     if (!chosenKey || !businesses[chosenKey]) {
-      document.getElementById("materialsCard").innerHTML =
-        "<p>Something went wrong. Please restart.</p>";
+      document.getElementById("materialsCard").innerHTML = "<p>Something went wrong. Please restart.</p>";
     } else {
       const chosenBusiness = businesses[chosenKey];
-
       let listItems = "";
       chosenBusiness.materials.forEach(item => {
         listItems += `<li>${item}</li>`;
@@ -43,10 +41,6 @@
           <ul>${listItems}</ul>
         </div>
       `;
-    }
-
-    function goToPlaces() {
-      window.location.href = "places.html";
     }
   </script>
 
