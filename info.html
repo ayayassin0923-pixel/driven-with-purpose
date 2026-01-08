@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Your Information</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
+  <div class="container" style="max-width: 400px; margin: auto; padding: 20px;">
     <h1>Tell us about you</h1>
     <p>This helps us personalize your journey.</p>
 
-    <form>
-      <input type="text" placeholder="Your name" required><br><br>
-      <input type="number" placeholder="Your age" required><br><br>
-      <input type="email" placeholder="Your email" required><br><br>
-      <label for="country">Country:</label>
-<input type="text" id="country" name="country" />
+    <form id="personalInfoForm">
+      <input type="text" id="name" placeholder="Your name" required /><br /><br />
+      <input type="number" id="age" placeholder="Your age" min="13" max="100" required /><br /><br />
+      <input type="email" id="email" placeholder="Your email" required /><br /><br />
+      <label for="country">Country:</label><br />
+      <input type="text" id="country" name="country" required /><br /><br />
       <button type="button" onclick="savePersonalInfo()">Next</button>
     </form>
   </div>
 
   <script>
-    function goNext() {
-      window.location.href = "questions.html";
+    function savePersonalInfo() {
+      const form = document.getElementById('personalInfoForm');
+      const personalInfo = {
+        name: form.name.value.trim(),
+        age: form.age.value,
+        email: form.email.value.trim(),
+        country: form.country.value.trim()
+      };
+      localStorage.setItem('personalInfo', JSON.stringify(personalInfo));
+      window.location.href = 'questions.html';
     }
-  </script><script>
-  function savePersonalInfo() {
-    const country = document.getElementById('country').value.trim();
-    localStorage.setItem('userCountry', country);
-    // Redirect to the next page (questions.html)
-    window.location.href = 'questions.html';
-  }
-</script>
-  
+  </script>
 </body>
 </html>
