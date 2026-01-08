@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Where to Buy</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -11,9 +11,10 @@
 
   <div id="placesCard"></div>
 
-  <button onclick="restart()">Start Over ↺</button>
+  <!-- Normal link to restart -->
+  <a href="index.html"><button>Start Over ↺</button></a>
 
-  <!-- Load shared data -->
+  <!-- Load script.js first -->
   <script src="script.js"></script>
 
   <script>
@@ -21,8 +22,7 @@
     const country = localStorage.getItem("userCountry") || "default";
 
     if (!chosenKey || !businesses[chosenKey]) {
-      document.getElementById("placesCard").innerHTML =
-        "<p>Something went wrong. Please restart.</p>";
+      document.getElementById("placesCard").innerHTML = "<p>Something went wrong. Please restart.</p>";
     } else {
       const chosenBusiness = businesses[chosenKey];
       const places = getPlaces(country);
@@ -45,10 +45,6 @@
           <ul>${placesList}</ul>
         </div>
       `;
-    }
-
-    function restart() {
-      window.location.href = "index.html";
     }
   </script>
 
